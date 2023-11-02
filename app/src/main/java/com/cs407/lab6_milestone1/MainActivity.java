@@ -1,12 +1,10 @@
 package com.cs407.lab6_milestone1;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -32,10 +30,15 @@ public class MainActivity extends FragmentActivity {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fragment_map);
         mapFragment.getMapAsync(googleMap -> {
-            mMap = googleMap;
-            googleMap.addMarker(new MarkerOptions().position(mDestinationLatLng).title("Destination"));
-            displayMyLocation();
+            try {
+                mMap = googleMap;
+                googleMap.addMarker(new MarkerOptions().position(mDestinationLatLng).title("Destination"));
+                displayMyLocation();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
+
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
     }
     private void displayMyLocation(){
