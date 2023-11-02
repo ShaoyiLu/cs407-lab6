@@ -38,6 +38,7 @@ public class MainActivity extends FragmentActivity {
                 e.printStackTrace();
             }
         });
+
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
     }
     private void displayMyLocation(){
